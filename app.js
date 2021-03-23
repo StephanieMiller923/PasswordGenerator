@@ -50,8 +50,8 @@ const randomFunc = {
 };
 
 // Selecting the DOM elements
-const resultEL = document.querySelector(`#result`);
-const lengthEL = document.querySelector(`#length`);
+const resultEl = document.querySelector(`#result`);
+const lengthEl = document.querySelector(`#length`);
 const uppercaseEl = document.querySelector(`#uppercase`);
 const lowercaseEl = document.querySelector(`#lowercase`);
 const numbersEl = document.querySelector(`#numbers`);
@@ -96,7 +96,7 @@ function generatePassword(upper, lower, number, symbol, length){
     for (i = 0; i < length; i += typesCount){
         typesArr.forEach(type => {
             const funcName = type[0];
-            console.log(funcName);
+            // console.log(funcName);
             generatedPassword += randomFunc[funcName]();
             console.log(generatedPassword);
         });
@@ -122,8 +122,39 @@ generateEl.addEventListener(`click`, () => {
     const hasNumber = numbersEl.checked;
     const hasSymbol = symbolsEl.checked;
 
+    console.log("=========")
+
     console.log(hasUpper, hasLower, hasNumber, hasSymbol, length);
-    
-});
+
+    // The generatePassword function takes nthe true/falsen values determined by the checkboxed as well as the number from the number input as arguments and returns a wstring (AKA The generated password)  which is set as the value for the innerText property for the result element/span
+    resultEl.innerText = generatePassword(hasUpper, hasNumber, hasSymbol, length);
+    });
+
+    // Copy password to clipboard
+    clipboardEl.addEventListener(`click`, () => {
+        const textArea = document.createElement(`textarea`);
+        const password = resultEl.innerText;
+
+        // If user clicks clipboard while no password is displayed the function will end and nothing will be copiede to the clipboard
+        if (password === ""){
+            return;
+        }
+
+        // Setting the value for the textArea to the passworde that is currently being displayed
+        textArea.value = password;
+        // Selecting the body element
+        const body = document.querySelector(`body`);
+        // Adding the textarea to the webpage
+        body.append(textArea);
+        // Selecting the value inside the textarea
+        textArea.select();
+        // Copying tthe selected value
+        document.execCommand(`copy`);
+        // Removing the textarea element from the webpage/document
+        textArea.remove();
+        alert(`Password has been copied to the clipboard!`);
+    });
+
+
 
 
