@@ -4,7 +4,7 @@
     box-sizing: border-box;
   }
   body {
-    background: #0275ff;
+    background: #22272c;
     color: #eef1ef;
     font-family: 'Open Sans', sans-serif;
     /* Flexbox used to center the div vertically and horitontally */
@@ -22,13 +22,13 @@
     text-align: center;
   }
   .container {
-    background: #443850;
+    background: #63051c;
     padding: 15px;
     width: 350px;
     border-radius: 5px;
   }
   .result-container {
-    background: #243119;
+    background: #030600;
     height: 50px;
     font-size: 18px;
     letter-spacing: 1px;
